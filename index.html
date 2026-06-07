@@ -9,25 +9,86 @@
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 <style>
 body{font-family:Arial,sans-serif;margin:0;background:#f4f7f5}
-header{background:#0b6e4f;color:#fff;padding:30px;text-align:center}
+
+/* Clean Header Text Block */
+header {
+  background: #0b6e4f;
+  color: #fff;
+  padding: 40px 20px;
+  text-align: center;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+}
+
+header h1 {
+  margin: 0 0 10px 0;
+  font-size: 2.5em;
+}
+
+header p {
+  font-size: 1.2em;
+  margin: 0 0 15px 0;
+  opacity: 0.95;
+}
+
+header h2 {
+  margin: 0;
+  font-size: 1.3em;
+  background: rgba(0, 0, 0, 0.2);
+  display: inline-block;
+  padding: 6px 18px;
+  border-radius: 20px;
+}
+
+/* Custom Image Frame Placed Directly Below Text */
+.image-container {
+  position: relative;
+  width: 100%;
+  height: 0;
+  padding-top: 56.25%; /* Maintains perfect 16:9 aspect ratio */
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  overflow: hidden;
+  background: #eef6f0;
+}
+
+.image-container iframe {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:15px;padding:15px}
-.card{background:#fff;padding:20px;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,.1)}
+.card{background:#fff;padding:20px;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,.1);margin-bottom:15px}
 #map{height:400px;border-radius:10px}
-table{width:100%;border-collapse:collapse}
-th,td{border:1px solid #ddd;padding:8px}
+table{width:100%;border-collapse:collapse;margin-top:10px}
+th,td{border:1px solid #ddd;padding:8px;text-align:left}
 th{background:#eef6f0}
 .timeline li{margin:8px 0}
-img{max-width:100%;height:auto;border-radius:12px;margin:15px 0;}
+.app-link {color: #0b6e4f; font-weight: bold; text-decoration: none;}
+.app-link:hover {text-decoration: underline;}
+.address-link {color: #0066cc; text-decoration: none; font-size: 0.85em; display: block; margin-top: 4px;}
+.address-link:hover {text-decoration: underline;}
+.photo-btn {display: inline-block; background: #0b6e4f; color: #fff; padding: 12px 24px; border-radius: 25px; text-decoration: none; font-weight: bold; margin-top: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.2);}
+.photo-btn:hover {background: #08543c;}
 </style>
 </head>
 <body>
 
+<!-- Header Text Block -->
 <header>
-<h1>☘️ Ireland Adventure 2026</h1>
-<p>June 23 - June 30, 2026</p>
-<h2 id="countdown"></h2>
-<img src="Screenshot_20260606_170727_Chrome.jpg" alt="Ireland Pub Adventure with Friends">
+  <h1>☘️ Ireland Adventure 2026</h1>
+  <p>June 23 - June 30, 2026</p>
+  <h2 id="countdown"></h2>
 </header>
+
+<!-- Live Canva Image Directly Below Text -->
+<div class="image-container">
+  <iframe loading="lazy" src="https://www.canva.com/design/DAHLehanSzY/H7M_Do8R3egiyGvqJ182HQ/view?embed" allowfullscreen="allowfullscreen" allow="fullscreen"></iframe>
+</div>
 
 <div class="grid">
 <div class="card">
@@ -54,11 +115,22 @@ img{max-width:100%;height:auto;border-radius:12px;margin:15px 0;}
 <div class="card">
 <h2>🎟️ Activities & Costs</h2>
 <table>
-<tr><th>Activity</th><th>Date</th><th>Cost</th><th>Paid</th><th>Remaining</th></tr>
+<tr><th>Activity / Booking</th><th>Date</th><th>Cost</th><th>Paid</th><th>Remaining</th></tr>
+<tr><td>DEPARTING US (American Airlines)</td><td>Jun 23</td><td>Paid</td><td>Paid</td><td>$0.00</td></tr>
+<tr><td>Landing Dublin (American Airlines)</td><td>Jun 24</td><td>Paid</td><td>Paid</td><td>$0.00</td></tr>
 <tr><td>Rental Car (Dublin)</td><td>Jun 24</td><td>$366.93</td><td>$0.00</td><td>$366.93</td></tr>
-<tr><td>Wicklow Sheepdog Show</td><td>Jun 25</td><td>$116.40</td><td>$0.00</td><td>$116.40</td></tr>
-<tr><td>Blarney Castle Tour</td><td>Jun 26</td><td>$294.77</td><td>$294.77</td><td>$0.00</td></tr>
-<tr><td>Cliffs of Moher Excursion</td><td>Jun 28</td><td>$146.48</td><td>$0.00</td><td>$146.48</td></tr>
+<tr><td>Dublin Jameson Distillery Bow St. Tour</td><td>Jun 24</td><td>$147.40</td><td>$0.00</td><td>$147.40</td></tr>
+<tr><td>Dublin Stay (<a class="app-link" href="vrbo://" target="_blank">VRBO</a>)</td><td>Jun 24</td><td>$190.58</td><td>$190.58</td><td>$0.00</td></tr>
+<tr><td>Sheep Dog Show (<a class="app-link" href="getyourguide://" target="_blank">GetYourGuide</a>)</td><td>Jun 25</td><td>$116.40</td><td>$0.00</td><td>$116.40</td></tr>
+<tr><td>Cork Stay (<a class="app-link" href="airbnb://" target="_blank">Airbnb</a>)</td><td>Jun 25</td><td>$456.98</td><td>$42.07</td><td>$414.91</td></tr>
+<tr><td>BLARNEY STONE (<a class="app-link" href="getyourguide://" target="_blank">GetYourGuide</a>)</td><td>Jun 26</td><td>$294.77</td><td>$294.77</td><td>$0.00</td></tr>
+<tr><td>Day In Kerry Glass House (<a class="app-link" href="airbnb://" target="_blank">Airbnb</a>)</td><td>Jun 26</td><td>$290.86</td><td>$164.68</td><td>$126.18</td></tr>
+<tr><td>Day One in Galway (<a class="app-link" href="https://www.booking.com" target="_blank">Booking.com</a>)</td><td>Jun 27</td><td>$724.00</td><td>$0.00</td><td>$724.00</td></tr>
+<tr><td>Day Two in Galway (<a class="app-link" href="https://www.booking.com" target="_blank">Booking.com</a>)</td><td>Jun 28</td><td>$0.00</td><td>$0.00</td><td>$0.00</td></tr>
+<tr><td>Cliffs of Moher from Doolin (<a class="app-link" href="tripadvisor://" target="_blank">Tripadvisor</a>)</td><td>Jun 28</td><td>$146.48</td><td>$0.00</td><td>$146.48</td></tr>
+<tr><td>Night Stay in Dublin (<a class="app-link" href="vrbo://" target="_blank">VRBO</a>)</td><td>Jun 29</td><td>$155.88</td><td>$155.88</td><td>$0.00</td></tr>
+<tr><td>DEPARTING DUBLIN (American Airlines)</td><td>Jun 30</td><td>Paid</td><td>Paid</td><td>$0.00</td></tr>
+<tr><td>LANDING NASHVILLE (American Airlines)</td><td>Jun 30</td><td>Paid</td><td>Paid</td><td>$0.00</td></tr>
 </table>
 </div>
 
@@ -66,27 +138,42 @@ img{max-width:100%;height:auto;border-radius:12px;margin:15px 0;}
 <div class="card">
 <h2>📅 Daily Itinerary</h2>
 <ul class="timeline">
-<li><b>June 24:</b> Arrive Dublin, pick up rental car, explore city.</li>
-<li><b>June 25:</b> Wicklow Sheepdog Show (10 AM), drive to Cork.</li>
-<li><b>June 26:</b> Blarney Castle (10 AM), continue to Kerry.</li>
-<li><b>June 27:</b> Explore Kerry / Killarney area.</li>
-<li><b>June 28:</b> Galway region and Cliffs of Moher.</li>
-<li><b>June 29:</b> Return to Dublin.</li>
-<li><b>June 30:</b> Depart Ireland.</li>
+<li><b>June 23:</b> Depart US from Nashville (11:59 AM).</li>
+<li><b>June 24:</b> Arrive Dublin (06:30 AM), pick up rental car, Jameson Distillery Bow St. Tour (04:30 PM). Check into Dublin VRBO.</li>
+<li><b>June 25:</b> Wicklow Sheepdog Show (10:00 AM), drive to Cork, check into Cork Airbnb (02:00 PM).</li>
+<li><b>June 26:</b> Blarney Stone Tour (10:00 AM), drive to Kerry (1h 23m), check into Kerry Airbnb (04:00 PM).</li>
+<li><b>June 27:</b> Drive to Galway region, check into Galway Booking.com accommodation (10:00 AM).</li>
+<li><b>June 28:</b> Cliffs of Moher excursion from Doolin (10:00 AM), explore Galway area.</li>
+<li><b>June 29:</b> Return to Dublin (2h 19m drive), check into final Dublin VRBO (04:00 PM).</li>
+<li><b>June 30:</b> Depart Dublin Airport (01:45 PM), land back in Nashville (06:55 PM).</li>
 </ul>
 </div>
 
 <div class="card">
-<h2>🏨 Lodging & Confirmations</h2>
+<h2>🏨 Lodging & Locations</h2>
 <table>
-<tr><th>Location</th><th>Confirmation</th></tr>
-<tr><td>Dublin VRBO</td><td>HA-G2YVKG</td></tr>
-<tr><td>Cork Airbnb</td><td>HM9FPWYXQ8</td></tr>
-<tr><td>Kerry Airbnb</td><td>HM2C59PCD3</td></tr>
-<tr><td>Galway Booking</td><td>5538369775</td></tr>
-<tr><td>Dublin Final Stay</td><td>HA-JSLHJY</td></tr>
+<tr><th>Location</th><th>Address (Click to Navigate)</th></tr>
+<tr>
+  <td><b>Dublin VRBO</b></td>
+  <td><a class="address-link" href="https://www.google.com/maps/search/?api=1&query=73+Ballyfermot+Cres+Kylemore+Dublin+D10+TW89+Ireland" target="_blank">73 Ballyfermot Cres Kylemore, Dublin, D10 TW89 Ireland</a></td>
+</tr>
+<tr>
+  <td><b>Cork Airbnb</b></td>
+  <td><a class="address-link" href="https://www.google.com/maps/search/?api=1&query=Lee+Road+Cork+County+Cork+T23E1VT+Ireland" target="_blank">Lee Road, Cork, County Cork T23E1VT, Ireland</a></td>
+</tr>
+<tr>
+  <td><b>Kerry Airbnb</b></td>
+  <td><a class="address-link" href="https://www.google.com/maps/search/?api=1&query=Redcliff+House+Brackloon+Inch+West+Co+Kerry+Ireland" target="_blank">Redcliff House, Brackloon, Inch West, Co. Kerry, Ireland</a></td>
+</tr>
+<tr>
+  <td><b>Galway Booking</b></td>
+  <td><a class="address-link" href="https://www.google.com/maps/search/?api=1&query=Barrack+Lane+Galway+Ireland" target="_blank">Barrack Lane, Galway, Ireland</a></td>
+</tr>
+<tr>
+  <td><b>Dublin Final Stay</b></td>
+  <td><a class="address-link" href="https://www.google.com/maps/search/?api=1&query=73+Ballyfermot+Cres+Kylemore+Dublin+D10+TW89+Ireland" target="_blank">73 Ballyfermot Cres Kylemore, Dublin, D10 TW89 Ireland</a></td>
+</tr>
 </table>
-<p><i>Add property addresses once available from booking confirmations.</i></p>
 </div>
 </div>
 
@@ -124,10 +211,27 @@ img{max-width:100%;height:auto;border-radius:12px;margin:15px 0;}
 </ul>
 </div>
 
+<div class="card" style="text-align: center; padding: 30px;">
+<h2>📸 Shared Trip Photo Album</h2>
+<p>View live updates and add your photos to our collective trip album throughout our adventure!</p>
+<a href="googlephotos://photos.app.goo.gl/6uaThjNnj6ZtJLk58" class="photo-btn" target="_blank" id="photo-link">Open Shared Album</a>
+</div>
+
 <script>
 const tripDate = new Date("2026-06-23T11:59:00");
 const days = Math.ceil((tripDate - new Date())/(1000*60*60*24));
-document.getElementById("countdown").innerText = days + " Days Until Departure";
+if (days > 0) {
+  document.getElementById("countdown").innerText = days + " Days Until Departure";
+} else {
+  document.getElementById("countdown").innerText = "Adventure is Underway!";
+}
+
+const photoLink = document.getElementById("photo-link");
+photoLink.addEventListener("click", function(e) {
+  setTimeout(function() {
+    window.location = "https://photos.app.goo.gl/6uaThjNnj6ZtJLk58";
+  }, 400);
+});
 
 const map = L.map('map').setView([53.3,-8.0],7);
 L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
